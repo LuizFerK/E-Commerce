@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
 } from 'typeorm';
+
+import Order from '@modules/orders/infra/typeorm/entities/Order';
 
 @Entity('customers')
 class Customer {
@@ -16,6 +19,9 @@ class Customer {
 
   @Column()
   email: string;
+
+  @OneToOne(() => Order)
+  order: Order;
 
   @CreateDateColumn()
   created_at: Date;
