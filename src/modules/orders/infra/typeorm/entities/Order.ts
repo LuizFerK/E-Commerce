@@ -17,10 +17,10 @@ class Order {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('uuid')
+  @Column()
   customer_id: string;
 
-  @OneToOne(() => Customer)
+  @OneToOne(() => Customer, customer => customer.order, { eager: true })
   @JoinColumn({ name: 'customer_id' })
   customer: Customer;
 

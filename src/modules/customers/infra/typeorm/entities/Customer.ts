@@ -20,7 +20,7 @@ class Customer {
   @Column()
   email: string;
 
-  @OneToOne(() => Order)
+  @OneToOne(() => Order, order => order.customer)
   order: Order;
 
   @CreateDateColumn()
