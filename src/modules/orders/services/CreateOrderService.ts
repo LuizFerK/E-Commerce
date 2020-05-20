@@ -43,11 +43,19 @@ class CreateProductService {
 
     const allProducts = await this.productsRepository.findAllById(productsId);
 
+    const quantity = products.map(product => {
+      return product.quantity;
+    });
+
+    let i = -1;
+
     const orderProducts = allProducts.map(product => {
+      i += 1;
+
       return {
         product_id: product.id,
         price: product.price,
-        quantity: product.quantity, // MUDAR ESSE CARA AQUI
+        quantity: quantity[i],
       };
     });
 
