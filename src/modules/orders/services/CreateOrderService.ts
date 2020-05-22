@@ -52,6 +52,16 @@ class CreateProductService {
     const orderProducts = allProducts.map(product => {
       i += 1;
 
+      if (product.id === undefined) {
+        throw new AppError('Product not found');
+      }
+
+      if (quantity[i] > product.quantity) {
+        throw new AppError(
+          'The product that you choose have insufficient quantities for your purchase',
+        );
+      }
+
       return {
         product_id: product.id,
         price: product.price,
